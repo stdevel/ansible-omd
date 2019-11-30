@@ -12,8 +12,9 @@ platforms:
     box: centos/7
   - name: debian-buster
     box: debian/buster64
-  - name: ubuntu-eoan
-    box: ubuntu/eoan64
+#  - name: ubuntu-eoan
+#    box: ubuntu/eoan64
+#    memory: 1024
   - name: fedora-30
     box: fedora/30-cloud-base
     memory: 1024
