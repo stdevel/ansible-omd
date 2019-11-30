@@ -1,0 +1,9 @@
+# TODO: customization
+
+# TODO: create site(s)
+# omd config $SITE set CORE $core
+# omd config $SITE set DEFAULT_GUI $gui
+# omd config $SITE set THRUK_COOKIE_AUTH on|off
+# create configuration files from variables in dict?
+# copy Nagios/Icinga configuration files to destination? => /opt/omd/sites/$site/nagios|icinga/conf.d/
+# remove Nagios protection => /opt/omd/sites/$site/etc/apache/conf.d/disable_nagios.conf

@@ -12,8 +12,6 @@
     name: omd
   when: ansible_facts["os_family"] == "Suse"
 
-  # TODO: customization
-
 - name: Enable and start service
   service:
     name: omd
