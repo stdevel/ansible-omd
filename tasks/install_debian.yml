@@ -1,5 +1,5 @@
 ---
-- name: Install package
+- name: Install package (Debian)
   apt:
     name: omd
   become: true
@@ -8,7 +8,7 @@
   shell: dpkg-query -f '${binary:Package}\n' -W omd-*
   register: omd_version
 
-- name: Enable and start service
+- name: Enable and start service (Debian)
   service:
     name: "{{ omd_version['stdout_lines'][0] }}"
     state: started

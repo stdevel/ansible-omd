@@ -1,5 +1,5 @@
 ---
-- name: Add GPG key
+- name: Add GPG key (Red Hat)
   rpm_key:
     key: "{{ key_redhat }}"
     state: present
@@ -12,7 +12,7 @@
   when: ansible_facts["distribution"] != "Fedora"
 
 
-- name: Add repository
+- name: Add repository (Red Hat)
   yum_repository:
     name: "consol-omd"
     description: "consol-omd"
@@ -34,7 +34,7 @@
       - rhel-7-server-optional-rpms
   become: true
   when: ansible_facts["distribution"] == "Red Hat Enterprise Linux" and ansible_facts["distribution_major_version"] == "7"
-- name: Add Fedora repository
+- name: Add repository (Fedora)
   yum_repository:
     name: "consol-omd"
     description: "consol-omd"

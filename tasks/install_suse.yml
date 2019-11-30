@@ -1,9 +1,9 @@
 ---
-- name: Install SUSE package
+- name: Install package (SUSE)
   zypper:
     name: omd
 
-- name: Enable and start service
+- name: Enable and start service (SUSE)
   service:
     name: omd
     state: started

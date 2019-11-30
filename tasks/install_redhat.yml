@@ -1,10 +1,10 @@
 ---
-- name: Install package
+- name: Install package (Red Hat)
   yum:
     name: omd
   become: true
 
-- name: Enable and start service
+- name: Enable and start service (Red Hat)
   service:
     name: omd
     state: started

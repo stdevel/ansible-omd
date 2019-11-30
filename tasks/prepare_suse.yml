@@ -1,11 +1,11 @@
 ---
-- name: Add GPG key
+- name: Add GPG key (SUSE)
   rpm_key:
     key: "{{ key_redhat }}"
     state: present
   become: true
 
-- name: Add repository
+- name: Add repository (SUSE)
   zypper_repository:
     repo: "{{ repo_sles }}"
   # TODO: only for supported SLES versions

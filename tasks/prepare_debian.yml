@@ -4,18 +4,18 @@
     name: "{{ packages_debian }}"
   become: true
 
-- name: Add GPG key
+- name: Add GPG key (Debian)
   apt_key:
     url: "{{ key_debian }}"
     state: present
   become: true
 
-- name: Add repository
+- name: Add repository (Debian)
   apt_repository:
     repo: "{{ repo_debian }}"
   become: true
   when: ansible_facts["distribution"] == "Debian"
-- name: Add Ubuntu repository
+- name: Add repository (Ubuntu)
   apt_repository:
     repo: "{{ repo_ubuntu }}"
   become: true
