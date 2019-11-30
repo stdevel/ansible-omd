@@ -1,7 +1,8 @@
 ---
 - name: Create site
   shell: "omd create {{ item.name }}"
-  ignore_errors: True
+  args:
+    creates: "/opt/omd/sites/{{ item.name }}/etc/omd/site.conf"
   loop: "{{ omd_sites }}"
 
 - name: Set core
