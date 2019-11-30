@@ -4,13 +4,8 @@
     name: "{{ package_omd }}"
   become: true
 
-#- name: Get OMD package version
-  #command: dpkg-query -f '${binary:Package}\n' -W omd-*
-  #register: omd_version
-
 - name: Enable and start service (Debian)
   service:
-    #name: "{{ omd_version['stdout_lines'][0] }}"
     name: "{{ item }}"
     state: started
     enabled: true
