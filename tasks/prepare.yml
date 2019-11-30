@@ -16,10 +16,9 @@
   when: ansible_facts["os_family"] == "RedHat"
 - name: Add EPEL GPG key
   rpm_key:
-     key: "{{ key_epel }}"
-     state: present
+    - key: "{{ key_epel }}"
+    - state: present
   when: ansible_facts["os_family"] == "RedHat"
-
 
 
 - name: Add Debian repository
@@ -45,9 +44,9 @@
 - name: Enable extra RHEL repositories
   rhsm_repository:
     name:
-    - rhel-7-server-rpms
-    - rhel-7-server-extras-rpms
-    - rhel-7-server-optional-rpms
+      - rhel-7-server-rpms
+      - rhel-7-server-extras-rpms
+      - rhel-7-server-optional-rpms
   when: ansible_facts["distribution"] == "Red Hat Enterprise Linux" and ansible_facts["distribution_major_version"] == "7"
 - name: Add Fedora repository
   yum_repository:

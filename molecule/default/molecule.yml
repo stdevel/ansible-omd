@@ -12,12 +12,12 @@ platforms:
     box: centos/7
   - name: debian-buster
     box: debian/buster64
-  #- name: ubuntu-eoan
-    #box: ubuntu/eoan64
-  #- name: fedora-30
-    #box: fedora/30-cloud-base
-  #-name: sles-12sp2
-    #box: suse/sles12sp2
+  - name: ubuntu-eoan
+    box: ubuntu/eoan64
+#  - name: fedora-30
+#    box: fedora/30-cloud-base
+#  -name: sles-12sp2
+#    box: suse/sles12sp2
 provisioner:
   name: ansible
   lint:
