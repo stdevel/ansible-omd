@@ -21,6 +21,26 @@ Role Variables
 | -------- | ------- | ----------- |
 | `package_omd` | `omd-3.20-labs-edition` | OMD package version to choose |
 
+The variable `sites` contains a dict specifying sites and their appropriate configuration to create. Refer to the following table for possible variables:
+
+| Variable | Description |
+| -------- | ----------- |
+| `name` | Site name |
+| `core` | Site core (*`icinga2`, `naemon` and for 2.x versions also `icinga` and `nagios`*) |
+| `default_gui` | Default GUI (*`thruk`, `grafana` and for 2.x versions also `nagios` and `check_mk`*) |
+| `thruk_cookie_auth` | Flag whether Thruk cookie authorization should be used |
+| `remove_nagios_protection` | Flag whether insecure Nagios CGIs should be disabled (*only for 2.x versions*) |
+
+By default, an Icinga2 site is created:
+```
+omd_sites:
+  - name: icinga2
+    core: icinga2
+    default_gui: thruk
+    thruk_cookie_auth: false
+    remove_nagios_protection: false 
+```
+
 Dependencies
 ------------
 
