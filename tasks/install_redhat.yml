@@ -1,7 +1,7 @@
 ---
 - name: Install package (Red Hat)
   yum:
-    name: omd
+    name: "{{ package_omd }}"
   become: true
 
 - name: Enable and start service (Red Hat)

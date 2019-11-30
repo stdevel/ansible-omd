@@ -1,7 +1,7 @@
 ---
 - name: Install package (Debian)
   apt:
-    name: omd
+    name: "{{ package_omd }}"
   become: true
 
 - name: Get OMD package version
