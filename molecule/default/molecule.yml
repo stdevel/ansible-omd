@@ -12,9 +12,9 @@ platforms:
     box: centos/7
   - name: debian-buster
     box: debian/buster64
-#  - name: ubuntu-eoan
-#    box: ubuntu/eoan64
-#    memory: 1024
+  # - name: ubuntu-eoan
+  # box: ubuntu/eoan64
+  # memory: 1024
   - name: fedora-30
     box: fedora/30-cloud-base
     memory: 1024
@@ -24,6 +24,10 @@ provisioner:
   name: ansible
   lint:
     name: ansible-lint
+  inventory:
+    host_vars:
+      fedora-30:
+        ansible_python_interpreter: "/usr/bin/python3"
 verifier:
   name: testinfra
   lint:
