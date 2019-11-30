@@ -1,0 +1,13 @@
+---
+- name: Install Debian package
+  apt:
+    name: omd
+  when: ansible_facts["os_family"] == "Debian"
+- name: Install RedHat package
+  yum:
+    name: omd
+  when: ansible_facts["os_family"] == "RedHat"
+- name: Install SUSE package
+  zypper:
+    name: omd
+  when: ansible_facts["os_family"] == "Suse"

@@ -1,0 +1,10 @@
+---
+# tasks file for ansible-omd
+
+- include: prepare.yml
+  become: true
+  tags: prepare
+
+- include: install.yml
+  become: true
+  tags: install
