@@ -3,13 +3,13 @@
   hosts: all
   gather_facts: false
   tasks:
-    - name: Install python for Ansible
-      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
-      become: true
-      changed_when: false
-      when: ansible_facts["os_family"] == "Debian"
-    - name: Install python for Ansible
-      raw: test -e /usr/bin/python || (yum update -y && yum install -y python)
-      become: true
-      changed_when: false
-      when: ansible_facts["os_family"] == "RedHat"
+    # - name: Install python for Ansible
+    #   raw: test -e /usr/bin/python || (apt -y update ; apt install -y python-minimal ; true)
+    #   become: true
+    #   changed_when: false
+    # - name: Install python for Ansible
+    #   raw: test -e /usr/bin/python || (yum update -y ; yum install -y python ; true)
+    #   become: true
+    #   changed_when: false
+    - debug:
+        msg: "Ohai"
