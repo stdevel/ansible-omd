@@ -1,29 +1,34 @@
 ---
 - name: Create site
-  shell: "omd create {{ item.name }}"
+  command: "omd create {{ item.name }}"
   args:
     creates: "/opt/omd/sites/{{ item.name }}/etc/omd/site.conf"
+  register: site_created
   loop: "{{ omd_sites }}"
 
 - name: Set core
-  shell: "omd config {{ item.name }} set CORE {{ item.core }}"
+  command: "omd config {{ item.name }} set CORE {{ item.core }}"
   loop: "{{ omd_sites }}"
+  when: site_created|bool
 
 - name: Set default UI
-  shell: "omd config {{ item.name }} set DEFAULT_GUI {{ item.default_gui }}"
+  command: "omd config {{ item.name }} set DEFAULT_GUI {{ item.default_gui }}"
   loop: "{{ omd_sites }}"
+  when: site_created|bool
 
 - name: Set Thruk authorization
-  shell: "omd config {{ item.name }} set THRUK_COOKIE_AUTH {{ item.thruk_cookie_auth }}"
+  command: "omd config {{ item.name }} set THRUK_COOKIE_AUTH {{ item.thruk_cookie_auth }}"
   loop: "{{ omd_sites }}"
+  when: site_created|bool
 
 - name: Remove Nagios protection
   file:
     path: "/opt/omd/sites/{{ item.name }}/etc/apache/conf.d/disable_nagios.conf"
     state: absent
   loop: "{{ omd_sites }}"
-  when: item.remove_nagios_protection
+  when: item.remove_nagios_protection|bool and site_created|bool
 
 - name: Restart site
-  shell: "omd restart {{ item.name }}"
+  command: "omd restart {{ item.name }}"
   loop: "{{ omd_sites }}"
+  when: site_created|bool
