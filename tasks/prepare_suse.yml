@@ -1,0 +1,12 @@
+---
+- name: Add GPG key
+  rpm_key:
+    key: "{{ key_redhat }}"
+    state: present
+  become: true
+
+- name: Add repository
+  zypper_repository:
+    repo: "{{ repo_sles }}"
+  # TODO: only for supported SLES versions
+  become: true

@@ -1,11 +1,9 @@
 ---
-# tasks file for ansible-omd
-
-- include: prepare.yml
+- include: "prepare_{{ ansible_os_family|lower }}.yml"
   become: true
   tags: prepare
 
-- include: install.yml
+- include: "install_{{ ansible_os_family|lower }}.yml"
   become: true
   tags: install
 

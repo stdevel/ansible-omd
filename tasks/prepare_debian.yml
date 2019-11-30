@@ -1,0 +1,22 @@
+---
+- name: Install requirements
+  apt:
+    name: "{{ packages_debian }}"
+  become: true
+
+- name: Add GPG key
+  apt_key:
+    url: "{{ key_debian }}"
+    state: present
+  become: true
+
+- name: Add repository
+  apt_repository:
+    repo: "{{ repo_debian }}"
+  become: true
+  when: ansible_facts["distribution"] == "Debian"
+- name: Add Ubuntu repository
+  apt_repository:
+    repo: "{{ repo_ubuntu }}"
+  become: true
+  when: ansible_facts["distribution"] == "Ubuntu"

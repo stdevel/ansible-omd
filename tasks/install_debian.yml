@@ -1,0 +1,14 @@
+---
+- name: Install package
+  apt:
+    name: omd
+
+- name: Get OMD package version
+  shell: dpkg-query -f '${binary:Package}\n' -W omd-*
+  register: omd_version
+
+- name: Enable and start service
+  service:
+    name: "{{ omd_version['stdout_lines'][0] }}"
+    state: started
+    enabled: true
