@@ -2,6 +2,10 @@
 packages_debian:
   - gpg
 
+package_omd:
+  - omd-3.20-labs-edition
+#  - omd-2.90-labs-edition
+
 key_debian: "https://labs.consol.de/repo/stable/RPM-GPG-KEY"
 key_redhat: "https://labs.consol.de/repo/stable/RPM-GPG-KEY"
 key_epel: "https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-{{ ansible_distribution_major_version }}"
@@ -12,3 +16,10 @@ repo_redhat: "http://labs.consol.de/repo/stable/rhel{{ ansible_distribution_majo
 repo_epel: "https://dl.fedoraproject.org/pub/epel/{{ ansible_distribution_major_version }}/$basearch"
 repo_fedora: "http://labs.consol.de/repo/stable/fc{{ ansible_distribution_major_version }}/$basearch"
 repo_sles: "http://labs.consol.de/repo/stable/sles{{ ansible_distribution_major_version }}sp{{ ansible_distribution_release }}/$basearch"
+
+omd_sites:
+  - name: icinga2
+    core: icinga2
+    default_gui: thruk
+    thruk_cookie_auth: false
+    remove_nagios_protection: false

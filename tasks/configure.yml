@@ -1,9 +1,28 @@
-# TODO: customization
+---
+- name: Create site
+  shell: "omd create {{ item.name }}"
+  ignore_errors: True
+  loop: "{{ omd_sites }}"
 
-# TODO: create site(s)
-# omd config $SITE set CORE $core
-# omd config $SITE set DEFAULT_GUI $gui
-# omd config $SITE set THRUK_COOKIE_AUTH on|off
-# create configuration files from variables in dict?
-# copy Nagios/Icinga configuration files to destination? => /opt/omd/sites/$site/nagios|icinga/conf.d/
-# remove Nagios protection => /opt/omd/sites/$site/etc/apache/conf.d/disable_nagios.conf
+- name: Set core
+  shell: "omd config {{ item.name }} set CORE {{ item.core }}"
+  loop: "{{ omd_sites }}"
+
+- name: Set default UI
+  shell: "omd config {{ item.name }} set DEFAULT_GUI {{ item.default_gui }}"
+  loop: "{{ omd_sites }}"
+
+- name: Set Thruk authorization
+  shell: "omd config {{ item.name }} set THRUK_COOKIE_AUTH {{ item.thruk_cookie_auth }}"
+  loop: "{{ omd_sites }}"
+
+- name: Remove Nagios protection
+  file:
+    path: "/opt/omd/sites/{{ item.name }}/etc/apache/conf.d/disable_nagios.conf"
+    state: absent
+  loop: "{{ omd_sites }}"
+  when: item.remove_nagios_protection
+
+- name: Restart site
+  shell: "omd restart {{ item.name }}"
+  loop: "{{ omd_sites }}"
