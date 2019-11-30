@@ -2,6 +2,7 @@
 - name: Install package
   apt:
     name: omd
+  become: true
 
 - name: Get OMD package version
   shell: dpkg-query -f '${binary:Package}\n' -W omd-*
@@ -12,3 +13,4 @@
     name: "{{ omd_version['stdout_lines'][0] }}"
     state: started
     enabled: true
+  become: true
