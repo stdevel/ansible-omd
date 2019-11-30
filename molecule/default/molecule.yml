@@ -14,8 +14,9 @@ platforms:
     box: debian/buster64
   - name: ubuntu-eoan
     box: ubuntu/eoan64
-#  - name: fedora-30
-#    box: fedora/30-cloud-base
+  - name: fedora-30
+    box: fedora/30-cloud-base
+    memory: 1024
 #  -name: sles-12sp2
 #    box: suse/sles12sp2
 provisioner:
