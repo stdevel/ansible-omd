@@ -1,4 +1,9 @@
 ---
+- name: Install Debian requirements
+  apt:
+    name: "{{ packages_debian }}"
+  when: ansible_facts["os_family"] == "Debian"
+
 - name: Add Debian GPG key
   apt_key:
     url: "{{ key_debian }}"
@@ -6,12 +11,12 @@
   when: ansible_facts["os_family"] == "Debian"
 - name: Add RedHat GPG key
   rpm_key:
-    url: "{{ key_redhat }}"
+    key: "{{ key_redhat }}"
     state: present
   when: ansible_facts["os_family"] == "RedHat"
 - name: Add EPEL GPG key
   rpm_key:
-     url: "{{ key_epel }}"
+     key: "{{ key_epel }}"
      state: present
   when: ansible_facts["os_family"] == "RedHat"
 
@@ -19,31 +24,37 @@
 
 - name: Add Debian repository
   apt_repository:
-    url: "{{ repo_debian }}"
-  when: ansible_facts["ansible_distribution"] == "Debian"
+    repo: "{{ repo_debian }}"
+  when: ansible_facts["distribution"] == "Debian"
 - name: Add Ubuntu repository
   apt_repository:
-    url: "{{ repo_ubuntu }}"
-  when: ansible_facts["ansible_distribution"] == "Ubuntu"
+    repo: "{{ repo_ubuntu }}"
+  when: ansible_facts["distribution"] == "Ubuntu"
 - name: Add RedHat repository
   yum_repository:
+    name: "consol-omd"
+    description: "consol-omd"
     baseurl: "{{ repo_redhat }}"
-  when: ansible_facts["ansible_distribution"] in ["CentOS", "Red Hat Enterprise Linux"]
+  when: ansible_facts["distribution"] in ["CentOS", "Red Hat Enterprise Linux"]
 - name: Add EPEL repository
   yum_repository:
+    name: "epel"
+    description: "epel"
     baseurl: "{{ repo_epel }}"
-  when: ansible_facts["ansible_distribution"] in ["CentOS", "Red Hat Enterprise Linux"]
+  when: ansible_facts["distribution"] in ["CentOS", "Red Hat Enterprise Linux"]
 - name: Enable extra RHEL repositories
   rhsm_repository:
     name:
     - rhel-7-server-rpms
     - rhel-7-server-extras-rpms
     - rhel-7-server-optional-rpms
-  when: ansible_facts["ansible_distribution"] == "Red Hat Enterprise Linux" and ansible_facts["ansible_distribution_major_version"] == "7"
+  when: ansible_facts["distribution"] == "Red Hat Enterprise Linux" and ansible_facts["distribution_major_version"] == "7"
 - name: Add Fedora repository
   yum_repository:
+    name: "consol-omd"
+    description: "consol-omd"
     baseurl: "{{ repo_fedora }}"
-  when: ansible_facts["ansible_distribution"] == "Fedora"
+  when: ansible_facts["distribution"] == "Fedora"
 - name: Add SUSE repository
   zypper_repository:
     repo: "{{ repo_sles }}"
