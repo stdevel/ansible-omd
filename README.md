@@ -43,7 +43,7 @@ Set variables if required, e.g.:
 - hosts: bacinga.giertz.loc
   remote_user: root
   roles:
-    - { role: stdevel.ansible_omd, pv_uyuni: '/dev/vdb' }
+    - { role: stdevel.ansible_omd, package_omd: 'omd-2.90-labs-edition' }
 ```
 
 
