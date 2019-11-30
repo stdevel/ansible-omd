@@ -16,7 +16,6 @@ galaxy_info:
       versions:
         - stretch
         - buster
-        - bullseye
     - name: Fedora
       versions:
         - 27
@@ -24,15 +23,12 @@ galaxy_info:
         - 29
         - 30
     - name: SLES
-      versions:
-        - 12SP2
-        - 12SP3
     - name: Ubuntu
       versions:
         - xenial
         - bionic
         - cosmic
-        - disco
+        - disco dingo
         - eoan
 
   galaxy_tags:
