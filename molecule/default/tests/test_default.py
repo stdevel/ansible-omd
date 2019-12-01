@@ -10,7 +10,7 @@ def test_pkg(host):
     # get variables from file
     ansible_vars = host.ansible("include_vars", "file=main.yml")
     # check packages
-    for pkg in ansible_vars['ansible_facts']['package_omd']:
+    for pkg in ansible_vars["ansible_facts"]["package_omd"]:
         omd_pkg = host.package(pkg)
         assert omd_pkg.is_installed
 
