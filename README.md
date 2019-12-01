@@ -9,12 +9,27 @@ Requirements
 ------------
 
 The system needs access to the internet. Also, you will need a Linux installation supported by OMD:
-- CentOS 7 / 8
-- RHEL 7 / 8
-- Debian 9 / 10 / 11
-- Fedora 27 / 28 / 29 / 30
-- SLES 12 SP2 / SP3
-- Ubuntu 16.04 / 18.04 / 18.10 / 19.04 / 19.10
+- CentOS / Red Hat Enterprise Linux
+  - 7
+  - 8
+- Fedora
+  - 27
+  - 28
+  - 29
+  - 30
+- SUSE Linux Enterprise Server 12
+  - SP2
+  - SP3
+- Debian
+  - 9 (*Stretch*)
+  - 10 (*Buster*)
+  - 11 (*Bullseye*)
+ - Ubuntu
+   - 16.04 (*Xenial Xerus*)
+   - 18.04 (*Bionic Beaver*)
+   - 18.10 (*Cosmic Cuttlefish*)
+   - 19.04 (*Disco Dingo*)
+   - 19.10 (*Eoan Ermine*)
 
 Role Variables
 --------------
