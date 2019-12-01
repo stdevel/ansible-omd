@@ -1,4 +1,10 @@
 ---
+- name: Install requirements (Fedora)
+  yum:
+    name: "{{ packages_fedora }}"
+  become: true
+  when: ansible_facts["distribution"] == "Fedora"
+
 - name: Add GPG key (Red Hat)
   rpm_key:
     key: "{{ key_redhat }}"
