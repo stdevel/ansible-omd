@@ -56,7 +56,7 @@ Refer to the following example:
 ```
     - hosts: servers
       roles:
-         - stdevel.ansible_omd
+         - stdevel.ansible-omd
 ```
 
 Set variables if required, e.g.:
@@ -65,7 +65,7 @@ Set variables if required, e.g.:
 - hosts: bacinga.giertz.loc
   remote_user: root
   roles:
-    - { role: stdevel.ansible_omd, package_omd: 'omd-2.90-labs-edition' }
+    - { role: stdevel.ansible-omd, package_omd: 'omd-2.90-labs-edition' }
 ```
 
 
