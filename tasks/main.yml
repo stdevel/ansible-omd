@@ -1,12 +1,9 @@
 ---
-- include: "prepare_{{ ansible_os_family|lower }}.yml"
-  become: true
+- include_tasks: "prepare_{{ ansible_os_family|lower }}.yml"
   tags: prepare
 
-- include: "install_{{ ansible_os_family|lower }}.yml"
-  become: true
+- include_tasks: "install_{{ ansible_os_family|lower }}.yml"
   tags: install
 
-- include: configure.yml
-  become: true
+- include_tasks: configure.yml
   tags: configure
