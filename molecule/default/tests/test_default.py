@@ -1,12 +1,41 @@
+"""
+Molecule unit tests
+"""
 import os
-
 import testinfra.utils.ansible_runner
 
-testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
+TESTINFRA_HOSTS = testinfra.utils.ansible_runner.AnsibleRunner(
     os.environ['MOLECULE_INVENTORY_FILE']
 ).get_hosts('all')
 
+def test_repo(host):
+    """
+    check if correct repository is used (stable/testing)
+    """
+    # get variables from file
+    ansible_vars = host.ansible("include_vars", "file=main.yml")
+    # check if correct repo is used (stable/testing)
+    os = host.ansible("setup")["ansible_facts"]["ansible_os_family"].lower()
+    if os == "debian":
+        repo_file = host.file(
+            "/etc/apt/sources.list.d/labs_consol_de_repo_%s_debian.list"  %
+            ansible_vars["ansible_facts"]["repo_flavor"]
+        )
+    elif os == "redhat":
+        repo_file = host.file(
+            "/etc/yum.repos.d/consol-omd.repo"
+        )
+    elif os == "suse":
+        repo_file = host.file(
+            "/etc/zypp/repos.d/consol-omd.repo"
+        )
+    assert ansible_vars["ansible_facts"]["repo_flavor"] \
+    in repo_file.content_string
+
 def test_pkg(host):
+    """
+    check if package is installed
+    """
     # get variables from file
     ansible_vars = host.ansible("include_vars", "file=main.yml")
     # check packages
@@ -15,6 +44,9 @@ def test_pkg(host):
         assert omd_pkg.is_installed
 
 def test_service(host):
+    """
+    check if service is running
+    """
     # get variables from file
     ansible_vars = host.ansible("include_vars", "file=main.yml")
     # check sites
@@ -27,6 +59,9 @@ def test_service(host):
         assert omd_srv.is_enabled
 
 def test_sites(host):
+    """
+    check if sites are running configuration values are matching variables
+    """
     # get variables from file
     ansible_vars = host.ansible("include_vars", "file=main.yml")
     # check sites

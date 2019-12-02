@@ -36,6 +36,7 @@ Role Variables
 
 | Variable | Default | Description |
 | -------- | ------- | ----------- |
+| `repo_flavor` | `stable` | Use `stable` or `testing` repository (*nightly builds*) |
 | `package_omd` | `omd-3.20-labs-edition` | OMD package version to choose |
 
 The variable `sites` contains a dict specifying sites and their appropriate configuration to create. Refer to the following table for possible variables:

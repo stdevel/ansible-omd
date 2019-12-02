@@ -7,6 +7,8 @@
 
 - name: Add repository (SUSE)
   zypper_repository:
+    name: "consol-omd"
+    description: "consol-omd"
     repo: "{{ repo_sles }}"
   # TODO: only for supported SLES versions
   become: true
