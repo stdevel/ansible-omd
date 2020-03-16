@@ -5,8 +5,6 @@ driver:
   name: vagrant
   provider:
     name: virtualbox
-lint:
-  name: yamllint
 platforms:
   - name: centos-7
     box: centos/7

@@ -29,7 +29,7 @@ galaxy_info:
         - xenial
         - bionic
         - cosmic
-        - disco dingo
+        - disco
         - eoan
 
   galaxy_tags:
