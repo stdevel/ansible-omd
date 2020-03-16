@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/stdevel/ansible-omd.svg?branch=master)](https://travis-ci.org/stdevel/ansible-omd)
 
-ansible-omd
-===========
+omd
+===
 
 This role installs and configures [OMD (*Open Monitoring Distribution*)](https://omdistro.org).
 

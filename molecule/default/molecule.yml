@@ -22,13 +22,13 @@ platforms:
 #    box: suse/sles12sp2
 provisioner:
   name: ansible
-  lint:
-    name: ansible-lint
   inventory:
     host_vars:
       fedora-30:
         ansible_python_interpreter: "/usr/bin/python3"
 verifier:
   name: testinfra
-  lint:
-    name: flake8
+lint: |
+    yamllint .
+    ansible-lint
+    flake8

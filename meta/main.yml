@@ -1,5 +1,6 @@
 ---
 galaxy_info:
+  role_name: omd
   author: Christian Stankowic
   description: Installs and configures OMD
   issue_tracker_url: https://github.com/stdevel/ansible-omd/issues
