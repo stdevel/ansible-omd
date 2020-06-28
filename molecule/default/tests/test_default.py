@@ -8,6 +8,7 @@ TESTINFRA_HOSTS = testinfra.utils.ansible_runner.AnsibleRunner(
     os.environ['MOLECULE_INVENTORY_FILE']
 ).get_hosts('all')
 
+
 def test_repo(host):
     """
     check if correct repository is used (stable/testing)
@@ -18,7 +19,7 @@ def test_repo(host):
     os = host.ansible("setup")["ansible_facts"]["ansible_os_family"].lower()
     if os == "debian":
         repo_file = host.file(
-            "/etc/apt/sources.list.d/labs_consol_de_repo_%s_debian.list"  %
+            "/etc/apt/sources.list.d/labs_consol_de_repo_%s_debian.list" %
             ansible_vars["ansible_facts"]["repo_flavor"]
         )
     elif os == "redhat":
@@ -30,7 +31,8 @@ def test_repo(host):
             "/etc/zypp/repos.d/consol-omd.repo"
         )
     assert ansible_vars["ansible_facts"]["repo_flavor"] \
-    in repo_file.content_string
+        in repo_file.content_string
+
 
 def test_pkg(host):
     """
@@ -42,6 +44,7 @@ def test_pkg(host):
     for pkg in ansible_vars["ansible_facts"]["package_omd"]:
         omd_pkg = host.package(pkg)
         assert omd_pkg.is_installed
+
 
 def test_service(host):
     """
@@ -57,6 +60,7 @@ def test_service(host):
             omd_srv = host.service("omd")
         assert omd_srv.is_running
         assert omd_srv.is_enabled
+
 
 def test_sites(host):
     """
