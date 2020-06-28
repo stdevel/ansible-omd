@@ -6,8 +6,7 @@ packages_fedora:
   - boost
 
 package_omd:
-  - omd-3.20-labs-edition
-#  - omd-2.90-labs-edition
+  - omd-labs-edition
 
 repo_flavor: "stable"
 
