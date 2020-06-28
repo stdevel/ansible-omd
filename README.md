@@ -1,12 +1,10 @@
 [![Build Status](https://travis-ci.org/stdevel/ansible-omd.svg?branch=master)](https://travis-ci.org/stdevel/ansible-omd)
 
-omd
-===
+# omd
 
 This role installs and configures [OMD (*Open Monitoring Distribution*)](https://omdistro.org).
 
-Requirements
-------------
+## Requirements
 
 The system needs access to the internet. Also, you will need a Linux installation supported by OMD:
 - CentOS / Red Hat Enterprise Linux
@@ -30,14 +28,14 @@ The system needs access to the internet. Also, you will need a Linux installatio
    - 18.10 (*Cosmic Cuttlefish*)
    - 19.04 (*Disco Dingo*)
    - 19.10 (*Eoan Ermine*)
+   - 20.04 (*Focal Fossa*)
 
-Role Variables
---------------
+## Role Variables
 
 | Variable | Default | Description |
 | -------- | ------- | ----------- |
 | `repo_flavor` | `stable` | Use `stable` or `testing` repository (*nightly builds*) |
-| `package_omd` | `omd-3.20-labs-edition` | OMD package version to choose |
+| `package_omd` | `omd-labs-edition` | OMD package version to choose |
 
 The variable `sites` contains a dict specifying sites and their appropriate configuration to create. Refer to the following table for possible variables:
 
@@ -50,7 +48,8 @@ The variable `sites` contains a dict specifying sites and their appropriate conf
 | `remove_nagios_protection` | Flag whether insecure Nagios CGIs should be disabled (*only for 2.x versions*) |
 
 By default, an Icinga2 site is created:
-```
+
+```yaml
 omd_sites:
   - name: icinga2
     core: icinga2
@@ -59,39 +58,35 @@ omd_sites:
     remove_nagios_protection: false 
 ```
 
-Dependencies
-------------
+## Dependencies
 
 No dependencies.
 
-Example Playbook
-----------------
+## Example Playbook
 
 Refer to the following example:
 
-```
+```yaml
     - hosts: servers
       roles:
          - stdevel.omd
 ```
 
 Set variables if required, e.g.:
-```
+
+```yaml
 ---
 - hosts: bacinga.giertz.loc
   remote_user: root
   roles:
     - role: stdevel.omd
-      package_omd: 'omd-2.90-labs-edition'
+      package_omd: 'omd-3.30-labs-edition'
 ```
 
-
-License
--------
+## License
 
 GPL 3.0
 
-Author Information
-------------------
+## Author Information
 
 Christian Stankowic (info@cstan.io)
