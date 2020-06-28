@@ -10,12 +10,6 @@
     key: "{{ key_redhat }}"
     state: present
   become: true
-- name: Add EPEL GPG key
-  rpm_key:
-    key: "{{ key_epel }}"
-    state: present
-  become: true
-  when: ansible_facts["distribution"] != "Fedora"
 
 
 - name: Add repository (Red Hat)
@@ -23,13 +17,6 @@
     name: "consol-omd"
     description: "consol-omd"
     baseurl: "{{ repo_redhat }}"
-  become: true
-  when: ansible_facts["distribution"] in ["CentOS", "Red Hat Enterprise Linux"]
-- name: Add EPEL repository
-  yum_repository:
-    name: "epel"
-    description: "epel"
-    baseurl: "{{ repo_epel }}"
   become: true
   when: ansible_facts["distribution"] in ["CentOS", "Red Hat Enterprise Linux"]
 - name: Enable extra RHEL repositories

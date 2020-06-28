@@ -7,6 +7,7 @@ This role installs and configures [OMD (*Open Monitoring Distribution*)](https:/
 ## Requirements
 
 The system needs access to the internet. Also, you will need a Linux installation supported by OMD:
+
 - CentOS / Red Hat Enterprise Linux
   - 7
   - 8
@@ -29,6 +30,8 @@ The system needs access to the internet. Also, you will need a Linux installatio
    - 19.04 (*Disco Dingo*)
    - 19.10 (*Eoan Ermine*)
    - 20.04 (*Focal Fossa*)
+
+Also make sure to have [EPEL](https://fedoraproject.org/wiki/EPEL) enabled for CentOS or Red Hat Enterprise Linux systems!
 
 ## Role Variables
 
@@ -79,6 +82,18 @@ Set variables if required, e.g.:
 - hosts: bacinga.giertz.loc
   remote_user: root
   roles:
+    - role: stdevel.omd
+      package_omd: 'omd-3.30-labs-edition'
+```
+
+Keep in mind enabling EPEL on RHEL/CentOS systems:
+
+```yaml
+---
+- hosts: bluecap.giertz.loc
+  remote_user: root
+  roles:
+    - role: geerlingguy.repo-epel
     - role: stdevel.omd
       package_omd: 'omd-3.30-labs-edition'
 ```
