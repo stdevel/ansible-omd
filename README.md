@@ -12,10 +12,7 @@ The system needs access to the internet. Also, you will need a Linux installatio
   - 7
   - 8
 - Fedora
-  - 27
-  - 28
-  - 29
-  - 30
+  - 32
 - SUSE Linux Enterprise Server 12
   - SP2
   - SP3
@@ -23,13 +20,9 @@ The system needs access to the internet. Also, you will need a Linux installatio
   - 9 (*Stretch*)
   - 10 (*Buster*)
   - 11 (*Bullseye*)
- - Ubuntu
-   - 16.04 (*Xenial Xerus*)
-   - 18.04 (*Bionic Beaver*)
-   - 18.10 (*Cosmic Cuttlefish*)
-   - 19.04 (*Disco Dingo*)
-   - 19.10 (*Eoan Ermine*)
-   - 20.04 (*Focal Fossa*)
+- Ubuntu
+  - 18.04 (*Bionic Beaver*)
+  - 20.04 (*Focal Fossa*)
 
 Also make sure to have [EPEL](https://fedoraproject.org/wiki/EPEL) enabled for CentOS or Red Hat Enterprise Linux systems!
 
@@ -37,8 +30,8 @@ Also make sure to have [EPEL](https://fedoraproject.org/wiki/EPEL) enabled for C
 
 | Variable | Default | Description |
 | -------- | ------- | ----------- |
-| `repo_flavor` | `stable` | Use `stable` or `testing` repository (*nightly builds*) |
-| `package_omd` | `omd-labs-edition` | OMD package version to choose |
+| `omd_repo_flavor` | `stable` | Use `stable` or `testing` repository (*nightly builds*) |
+| `omd_package` | `omd-labs-edition` | OMD package version to choose |
 
 The variable `sites` contains a dict specifying sites and their appropriate configuration to create. Refer to the following table for possible variables:
 
@@ -49,6 +42,7 @@ The variable `sites` contains a dict specifying sites and their appropriate conf
 | `default_gui` | Default GUI (*`thruk`, `grafana` and for 2.x versions also `nagios` and `check_mk`*) |
 | `thruk_cookie_auth` | Flag whether Thruk cookie authorization should be used |
 | `remove_nagios_protection` | Flag whether insecure Nagios CGIs should be disabled (*only for 2.x versions*) |
+| `admin_password` | `omdadmin` default password (*default: `omd`*) |
 
 By default, an Icinga2 site is created:
 
@@ -58,7 +52,8 @@ omd_sites:
     core: icinga2
     default_gui: thruk
     thruk_cookie_auth: false
-    remove_nagios_protection: false 
+    remove_nagios_protection: false
+    admin_password: omd
 ```
 
 ## Dependencies

@@ -1,0 +1,12 @@
+---
+- name: Install package
+  package:
+    name: "{{ omd_package }}"
+  become: true
+
+- name: Enable and start service
+  service:
+    name: "{{ omd_service }}"
+    state: started
+    enabled: true
+  become: true

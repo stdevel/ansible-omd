@@ -1,0 +1,7 @@
+---
+omd_requisites:
+  - gpg
+
+omd_repo_url: "deb http://labs.consol.de/repo/{{ omd_repo_flavor }}/ubuntu {{ ansible_distribution_release }} main"
+
+omd_service: "{{ omd_package }}"

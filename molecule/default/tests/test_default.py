@@ -41,7 +41,7 @@ def test_pkg(host):
     # get variables from file
     ansible_vars = host.ansible("include_vars", "file=main.yml")
     # check packages
-    for pkg in ansible_vars["ansible_facts"]["package_omd"]:
+    for pkg in ansible_vars["ansible_facts"]["omd_package"]:
         omd_pkg = host.package(pkg)
         assert omd_pkg.is_installed
 
@@ -53,8 +53,8 @@ def test_service(host):
     # get variables from file
     ansible_vars = host.ansible("include_vars", "file=main.yml")
     # check sites
-    for pkg in ansible_vars["ansible_facts"]["package_omd"]:
-        if host.ansible("setup")["ansible_facts"]["ansible_os_family"].lower() == "debian":
+    for pkg in ansible_vars["ansible_facts"]["omd_package"]:
+        if host.ansible("setup")["ansible_facts"]["ansible_os_family"].lower() == "debian":     # noqa: E501
             omd_srv = host.service(pkg)
         else:
             omd_srv = host.service("omd")
@@ -80,3 +80,5 @@ def test_sites(host):
             # check default_ui
             cmd_core = host.run("omd config %s show DEFAULT_GUI", site["name"])
             assert cmd_core.stdout.strip() == site["default_gui"]
+
+# TODO: def test_password

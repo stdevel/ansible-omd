@@ -1,14 +1,14 @@
 ---
-- name: Add GPG key (SUSE)
+- name: Add GPG key
   rpm_key:
-    key: "{{ key_redhat }}"
+    key: "{{ omd_repo_key }}"
     state: present
   become: true
 
-- name: Add repository (SUSE)
+- name: Add repository
   zypper_repository:
     name: "consol-omd"
     description: "consol-omd"
-    repo: "{{ repo_sles }}"
+    repo: "{{ omd_repo_url }}"
   # TODO: only for supported SLES versions
   become: true

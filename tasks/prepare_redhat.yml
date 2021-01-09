@@ -1,24 +1,23 @@
 ---
-- name: Install requirements (Fedora)
+- name: Install requirements
   yum:
-    name: "{{ packages_fedora }}"
+    name: "{{ omd_requisites }}"
   become: true
-  when: ansible_facts["distribution"] == "Fedora"
 
-- name: Add GPG key (Red Hat)
+- name: Add GPG key
   rpm_key:
-    key: "{{ key_redhat }}"
+    key: "{{ omd_repo_key }}"
     state: present
   become: true
 
 
-- name: Add repository (Red Hat)
+- name: Add repository
   yum_repository:
     name: "consol-omd"
     description: "consol-omd"
-    baseurl: "{{ repo_redhat }}"
+    baseurl: "{{ omd_repo_url }}"
   become: true
-  when: ansible_facts["distribution"] in ["CentOS", "Red Hat Enterprise Linux"]
+
 - name: Enable extra RHEL repositories
   rhsm_repository:
     name:
@@ -27,10 +26,3 @@
       - rhel-7-server-optional-rpms
   become: true
   when: ansible_facts["distribution"] == "Red Hat Enterprise Linux" and ansible_facts["distribution_major_version"] == "7"
-- name: Add repository (Fedora)
-  yum_repository:
-    name: "consol-omd"
-    description: "consol-omd"
-    baseurl: "{{ repo_fedora }}"
-  become: true
-  when: ansible_facts["distribution"] == "Fedora"
