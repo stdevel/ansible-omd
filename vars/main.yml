@@ -8,7 +8,7 @@ omd_version: '4.00'
 
 omd_service: omd
 
-omd_repo_flavor: "stable"
+omd_repo_flavor: stable
 
 omd_sites:
   - name: icinga2
@@ -16,4 +16,3 @@ omd_sites:
     default_gui: thruk
     thruk_cookie_auth: false
     remove_nagios_protection: false
-    admin_password: omd

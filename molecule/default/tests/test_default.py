@@ -35,9 +35,9 @@ def test_repo(host):
         in repo_file.content_string
 
 
-def test_pkg(host):
+def test_packages(host):
     """
-    check if package is installed
+    check if packages are installed
     """
     # get variables from file
     ansible_vars = host.ansible("include_vars", "file=main.yml")
@@ -47,9 +47,9 @@ def test_pkg(host):
         assert omd_pkg.is_installed
 
 
-def test_service(host):
+def test_services(host):
     """
-    check if service is running
+    check if services are running
     """
     # get variables from file
     ansible_vars = host.ansible("include_vars", "file=main.yml")
@@ -84,5 +84,3 @@ def test_sites(host):
             # check default_ui
             cmd_core = host.run("omd config %s show DEFAULT_GUI", site["name"])
             assert cmd_core.stdout.strip() == site["default_gui"]
-
-# TODO: def test_password

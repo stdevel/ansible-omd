@@ -42,7 +42,7 @@ The variable `sites` contains a dict specifying sites and their appropriate conf
 | `default_gui` | Default GUI (*`thruk`, `grafana` and for 2.x versions also `nagios` and `check_mk`*) |
 | `thruk_cookie_auth` | Flag whether Thruk cookie authorization should be used |
 | `remove_nagios_protection` | Flag whether insecure Nagios CGIs should be disabled (*only for 2.x versions*) |
-| `admin_password` | `omdadmin` default password (*default: `omd`*) |
+| `admin_password` | `omdadmin` default password (*default: empty, automatically set by OMD*) |
 
 By default, an Icinga2 site is created:
 
@@ -53,7 +53,6 @@ omd_sites:
     default_gui: thruk
     thruk_cookie_auth: false
     remove_nagios_protection: false
-    admin_password: omd
 ```
 
 ## Dependencies
