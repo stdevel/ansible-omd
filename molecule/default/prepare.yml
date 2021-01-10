@@ -1,0 +1,8 @@
+---
+- name: Prepare CentOS host
+  hosts: centos-7
+  tasks:
+    - name: Enable EPEL
+      yum:
+        name: epel-release
+      become: true
