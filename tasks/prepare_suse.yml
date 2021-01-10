@@ -1,4 +1,9 @@
 ---
+- name: Ensure having supported SP release
+  fail: msg="Please use SLES 12 SP2-4"
+  when:
+    - ansible_distribution_version not in ['12.2', '12.3', '12.4']
+
 - name: Add GPG key
   rpm_key:
     key: "{{ omd_repo_key }}"
@@ -10,5 +15,4 @@
     name: "consol-omd"
     description: "consol-omd"
     repo: "{{ omd_repo_url }}"
-  # TODO: only for supported SLES versions
   become: true
