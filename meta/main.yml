@@ -17,20 +17,15 @@ galaxy_info:
       versions:
         - stretch
         - buster
+        - bullseye
     - name: Fedora
       versions:
-        - 27
-        - 28
-        - 29
-        - 30
+        - 32
     - name: SLES
     - name: Ubuntu
       versions:
-        - xenial
         - bionic
-        - cosmic
-        - disco
-        - eoan
+        - focal
 
   galaxy_tags:
     - monitoring

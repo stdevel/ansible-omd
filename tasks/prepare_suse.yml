@@ -1,14 +1,18 @@
 ---
-- name: Add GPG key (SUSE)
+- name: Ensure having supported SP release
+  fail: msg="Please use SLES 12 SP2-4"
+  when:
+    - ansible_distribution_version not in ['12.2', '12.3', '12.4']
+
+- name: Add GPG key
   rpm_key:
-    key: "{{ key_redhat }}"
+    key: "{{ omd_repo_key }}"
     state: present
   become: true
 
-- name: Add repository (SUSE)
+- name: Add repository
   zypper_repository:
     name: "consol-omd"
     description: "consol-omd"
-    repo: "{{ repo_sles }}"
-  # TODO: only for supported SLES versions
+    repo: "{{ omd_repo_url }}"
   become: true

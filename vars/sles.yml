@@ -1,0 +1,4 @@
+---
+omd_requisites: []
+
+omd_repo_url: "http://labs.consol.de/repo/{{ omd_repo_flavor }}/sles{{ ansible_distribution_major_version }}sp{{ ansible_distribution_release }}/$basearch"

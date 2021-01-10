@@ -1,22 +1,16 @@
 ---
 - name: Install requirements
   apt:
-    name: "{{ packages_debian }}"
+    name: "{{ omd_requisites }}"
   become: true
 
-- name: Add GPG key (Debian)
+- name: Add GPG key
   apt_key:
-    url: "{{ key_debian }}"
+    url: "{{ omd_repo_key }}"
     state: present
   become: true
 
-- name: Add repository (Debian)
+- name: Add repository
   apt_repository:
-    repo: "{{ repo_debian }}"
+    repo: "{{ omd_repo_url }}"
   become: true
-  when: ansible_facts["distribution"] == "Debian"
-- name: Add repository (Ubuntu)
-  apt_repository:
-    repo: "{{ repo_ubuntu }}"
-  become: true
-  when: ansible_facts["distribution"] == "Ubuntu"

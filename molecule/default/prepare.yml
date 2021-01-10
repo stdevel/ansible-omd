@@ -1,7 +1,8 @@
 ---
-- name: Prepare
-  hosts: all
-  gather_facts: false
+- name: Prepare CentOS host
+  hosts: centos-7
   tasks:
-    - debug:
-        msg: "Ohai"
+    - name: Enable EPEL
+      yum:
+        name: epel-release
+      become: true

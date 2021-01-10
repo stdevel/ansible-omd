@@ -1,0 +1,11 @@
+---
+omd_requisites:
+  - gpg
+  - libpangocairo-1.0-0
+
+omd_repo_url: "deb http://labs.consol.de/repo/{{ omd_repo_flavor }}/ubuntu {{ ansible_distribution_release }} main"
+
+# real package name
+omd_pkg_name: "omd-{{ omd_version }}"
+
+omd_service: "{{ omd_package[0] | replace('omd', omd_pkg_name) }}"

@@ -1,2 +1,18 @@
 ---
-# vars file for omd
+omd_repo_key: "https://labs.consol.de/repo/{{ omd_repo_flavor }}/RPM-GPG-KEY"
+
+omd_package:
+  - omd-labs-edition
+
+omd_version: '4.00'
+
+omd_service: omd
+
+omd_repo_flavor: stable
+
+omd_sites:
+  - name: icinga2
+    core: icinga2
+    default_gui: thruk
+    thruk_cookie_auth: false
+    remove_nagios_protection: false

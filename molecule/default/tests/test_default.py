@@ -18,9 +18,10 @@ def test_repo(host):
     # check if correct repo is used (stable/testing)
     os = host.ansible("setup")["ansible_facts"]["ansible_os_family"].lower()
     if os == "debian":
+        distro = host.ansible("setup")["ansible_facts"]["ansible_distribution"].lower()     # noqa: E501
         repo_file = host.file(
-            "/etc/apt/sources.list.d/labs_consol_de_repo_%s_debian.list" %
-            ansible_vars["ansible_facts"]["repo_flavor"]
+            "/etc/apt/sources.list.d/labs_consol_de_repo_%s_%s.list" %
+            (ansible_vars["ansible_facts"]["omd_repo_flavor"], distro)
         )
     elif os == "redhat":
         repo_file = host.file(
@@ -30,32 +31,35 @@ def test_repo(host):
         repo_file = host.file(
             "/etc/zypp/repos.d/consol-omd.repo"
         )
-    assert ansible_vars["ansible_facts"]["repo_flavor"] \
+    assert ansible_vars["ansible_facts"]["omd_repo_flavor"] \
         in repo_file.content_string
 
 
-def test_pkg(host):
+def test_packages(host):
     """
-    check if package is installed
+    check if packages are installed
     """
     # get variables from file
     ansible_vars = host.ansible("include_vars", "file=main.yml")
     # check packages
-    for pkg in ansible_vars["ansible_facts"]["package_omd"]:
+    for pkg in ansible_vars["ansible_facts"]["omd_package"]:
         omd_pkg = host.package(pkg)
         assert omd_pkg.is_installed
 
 
-def test_service(host):
+def test_services(host):
     """
-    check if service is running
+    check if services are running
     """
     # get variables from file
     ansible_vars = host.ansible("include_vars", "file=main.yml")
-    # check sites
-    for pkg in ansible_vars["ansible_facts"]["package_omd"]:
-        if host.ansible("setup")["ansible_facts"]["ansible_os_family"].lower() == "debian":
-            omd_srv = host.service(pkg)
+    # check services
+    for pkg in ansible_vars["ansible_facts"]["omd_package"]:
+        if host.ansible("setup")["ansible_facts"]["ansible_os_family"].lower() == "debian":     # noqa: E501
+            # service name includes omd version
+            omd_srv = host.service(pkg.replace(
+                "omd", "omd-%s" % ansible_vars["ansible_facts"]["omd_version"])
+                )
         else:
             omd_srv = host.service("omd")
         assert omd_srv.is_running
