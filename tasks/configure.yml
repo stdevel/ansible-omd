@@ -33,6 +33,12 @@
   loop: "{{ omd_sites }}"
   when: item.remove_nagios_protection|bool and site_created is changed
 
+- name: Set admin password
+  command: "htpasswd -b /opt/omd/sites/{{ item.name }}/etc/htpasswd omdadmin '{{ item.admin_password }}'"
+  become: true
+  loop: "{{ omd_sites }}"
+  when: item.admin_password is defined
+
 - name: Restart site
   command: "omd restart {{ item.name }}"
   become: true
