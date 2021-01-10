@@ -53,10 +53,13 @@ def test_service(host):
     """
     # get variables from file
     ansible_vars = host.ansible("include_vars", "file=main.yml")
-    # check sites
+    # check services
     for pkg in ansible_vars["ansible_facts"]["omd_package"]:
         if host.ansible("setup")["ansible_facts"]["ansible_os_family"].lower() == "debian":     # noqa: E501
-            omd_srv = host.service(pkg)
+            # service name includes omd version
+            omd_srv = host.service(pkg.replace(
+                "omd", "omd-%s" % ansible_vars["ansible_facts"]["omd_version"])
+                )
         else:
             omd_srv = host.service("omd")
         assert omd_srv.is_running

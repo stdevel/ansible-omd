@@ -12,7 +12,16 @@
 - include_tasks: "prepare_{{ ansible_os_family | lower }}.yml"
   tags: prepare
 
-- include_tasks: install.yml
+#- include_tasks: install.yml
+- include_tasks: "{{ lookup('first_found', params) }}"
+  vars:
+    params:
+      files:
+        - "{{ ansible_distribution | lower }}.yml"
+        - "{{ ansible_os_family | lower }}.yml"
+        - install.yml
+      paths:
+        - tasks
   tags: install
 
 - include_tasks: configure.yml

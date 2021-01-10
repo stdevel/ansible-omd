@@ -31,7 +31,7 @@ Also make sure to have [EPEL](https://fedoraproject.org/wiki/EPEL) enabled for C
 | Variable | Default | Description |
 | -------- | ------- | ----------- |
 | `omd_repo_flavor` | `stable` | Use `stable` or `testing` repository (*nightly builds*) |
-| `omd_package` | `omd-labs-edition` | OMD package version to choose |
+| `omd_version` | `4.00` | OMD package version to choose |
 
 The variable `sites` contains a dict specifying sites and their appropriate configuration to create. Refer to the following table for possible variables:
 
@@ -78,7 +78,7 @@ Set variables if required, e.g.:
   remote_user: root
   roles:
     - role: stdevel.omd
-      package_omd: 'omd-3.30-labs-edition'
+      package_omd: '4.00'
 ```
 
 Keep in mind enabling EPEL on RHEL/CentOS systems:
@@ -90,7 +90,7 @@ Keep in mind enabling EPEL on RHEL/CentOS systems:
   roles:
     - role: geerlingguy.repo-epel
     - role: stdevel.omd
-      package_omd: 'omd-3.30-labs-edition'
+      omd_version: '3.30'
 ```
 
 ## License
