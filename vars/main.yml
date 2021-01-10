@@ -1,7 +1,8 @@
 ---
 omd_repo_key: "https://labs.consol.de/repo/{{ omd_repo_flavor }}/RPM-GPG-KEY"
 
-omd_package: omd-labs-edition
+omd_package:
+  - omd-labs-edition
 omd_service: omd
 
 omd_repo_flavor: "stable"

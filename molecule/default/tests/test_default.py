@@ -18,9 +18,10 @@ def test_repo(host):
     # check if correct repo is used (stable/testing)
     os = host.ansible("setup")["ansible_facts"]["ansible_os_family"].lower()
     if os == "debian":
+        distro = host.ansible("setup")["ansible_facts"]["ansible_distribution"].lower()     # noqa: E501
         repo_file = host.file(
-            "/etc/apt/sources.list.d/labs_consol_de_repo_%s_debian.list" %
-            ansible_vars["ansible_facts"]["repo_flavor"]
+            "/etc/apt/sources.list.d/labs_consol_de_repo_%s_%s.list" %
+            (ansible_vars["ansible_facts"]["omd_repo_flavor"], distro)
         )
     elif os == "redhat":
         repo_file = host.file(
@@ -30,7 +31,7 @@ def test_repo(host):
         repo_file = host.file(
             "/etc/zypp/repos.d/consol-omd.repo"
         )
-    assert ansible_vars["ansible_facts"]["repo_flavor"] \
+    assert ansible_vars["ansible_facts"]["omd_repo_flavor"] \
         in repo_file.content_string
 
 
