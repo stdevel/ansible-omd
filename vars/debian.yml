@@ -6,5 +6,3 @@ omd_repo_url: "deb http://labs.consol.de/repo/{{ omd_repo_flavor }}/debian {{ an
 
 # real package name
 omd_pkg_name: "omd-{{ omd_version }}"
-
-omd_service: "{{ omd_package[0] | replace('omd', omd_pkg_name) }}"
