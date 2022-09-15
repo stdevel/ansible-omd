@@ -3,6 +3,6 @@
   hosts: centos-7
   tasks:
     - name: Enable EPEL
-      yum:
+      ansible.builtin.yum:
         name: epel-release
       become: true

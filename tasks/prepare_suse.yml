@@ -1,17 +1,17 @@
 ---
 - name: Ensure having supported SP release
-  fail: msg="Please use SLES 12 SP2-4"
+  ansible.builtin.fail: msg="Please use SLES 12 SP2-4"
   when:
     - ansible_distribution_version not in ['12.2', '12.3', '12.4']
 
 - name: Add GPG key
-  rpm_key:
+  ansible.builtin.rpm_key:
     key: "{{ omd_repo_key }}"
     state: present
   become: true
 
 - name: Add repository
-  zypper_repository:
+  ansible.builtin.zypper_repository:
     name: "consol-omd"
     description: "consol-omd"
     repo: "{{ omd_repo_url }}"

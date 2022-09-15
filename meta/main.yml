@@ -1,5 +1,6 @@
 ---
 galaxy_info:
+  namespace: stdevel
   role_name: omd
   author: Christian Stankowic
   description: Installs and configures OMD

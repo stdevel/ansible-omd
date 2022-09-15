@@ -1,16 +1,16 @@
 ---
 - name: Install requirements
-  apt:
+  ansible.builtin.apt:
     name: "{{ omd_requisites }}"
   become: true
 
 - name: Add GPG key
-  apt_key:
+  ansible.builtin.apt_key:
     url: "{{ omd_repo_key }}"
     state: present
   become: true
 
 - name: Add repository
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: "{{ omd_repo_url }}"
   become: true
