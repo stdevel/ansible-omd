@@ -1,2 +1,3 @@
 ---
-# handlers file for omd
+- name: Configure site
+  ansible.builtin.include_tasks: configure_site.yml

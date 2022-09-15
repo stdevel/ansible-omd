@@ -3,44 +3,6 @@
   ansible.builtin.command: "omd create {{ item.name }}"
   args:
     creates: "/opt/omd/sites/{{ item.name }}/etc/omd/site.conf"
-  register: site_created
   become: true
   loop: "{{ omd_sites }}"
-
-- name: Set core
-  ansible.builtin.command: "omd config {{ item.name }} set CORE {{ item.core }}"
-  loop: "{{ omd_sites }}"
-  when: site_created is changed
-  become: true
-
-- name: Set default UI
-  ansible.builtin.command: "omd config {{ item.name }} set DEFAULT_GUI {{ item.default_gui }}"
-  loop: "{{ omd_sites }}"
-  become: true
-  when: site_created is changed
-
-- name: Set Thruk authorization
-  ansible.builtin.command: "omd config {{ item.name }} set THRUK_COOKIE_AUTH {{ item.thruk_cookie_auth }}"
-  become: true
-  loop: "{{ omd_sites }}"
-  when: site_created is changed
-
-- name: Remove Nagios protection
-  ansible.builtin.file:
-    path: "/opt/omd/sites/{{ item.name }}/etc/apache/conf.d/disable_nagios.conf"
-    state: absent
-  become: true
-  loop: "{{ omd_sites }}"
-  when: item.remove_nagios_protection|bool and site_created is changed
-
-- name: Set admin password
-  ansible.builtin.command: "htpasswd -b /opt/omd/sites/{{ item.name }}/etc/htpasswd omdadmin '{{ item.admin_password }}'"
-  become: true
-  loop: "{{ omd_sites }}"
-  when: item.admin_password is defined
-
-- name: Restart site
-  ansible.builtin.command: "omd restart {{ item.name }}"
-  become: true
-  loop: "{{ omd_sites }}"
-  when: site_created is changed
+  notify: Configure site
