@@ -7,26 +7,23 @@ galaxy_info:
   issue_tracker_url: https://github.com/stdevel/ansible-omd/issues
   license: GPL-3.0-only
 
-  min_ansible_version: 2.4
+  min_ansible_version: '2.4'
 
   platforms:
     - name: EL
       versions:
-        - 7
-        - 8
+        - '7'
+        - '8'
     - name: Debian
       versions:
-        - stretch
         - buster
         - bullseye
-    - name: Fedora
-      versions:
-        - 32
     - name: SLES
     - name: Ubuntu
       versions:
         - bionic
         - focal
+        - jammy
 
   galaxy_tags:
     - monitoring

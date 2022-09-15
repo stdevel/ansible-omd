@@ -13,15 +13,8 @@ platforms:
   - name: ubuntu-focal
     box: generic/ubuntu2004
     memory: 1024
-  - name: fedora-36
-    box: generic/fedora36
-    memory: 1024
 provisioner:
   name: ansible
-  inventory:
-    host_vars:
-      fedora-36:
-        ansible_python_interpreter: "/usr/bin/python3"
 verifier:
   name: testinfra
 lint: |
