@@ -7,6 +7,6 @@
         - name: icinga2
           core: icinga2
           default_gui: thruk
-          thruk_cookie_auth: false
+          thruk_cookie_auth: 'on'
           remove_nagios_protection: false
           admin_password: omd
